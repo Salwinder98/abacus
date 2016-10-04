@@ -3,7 +3,7 @@
 * Visit http://createjs.com/ for documentation, updates and examples.
 *
 * Copyright (c) 2010 gskinner.com, inc.
-* 
+*
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
 * files (the "Software"), to deal in the Software without
@@ -12,10 +12,10 @@
 * copies of the Software, and to permit persons to whom the
 * Software is furnished to do so, subject to the following
 * conditions:
-* 
+*
 * The above copyright notice and this permission notice shall be
 * included in all copies or substantial portions of the Software.
-* 
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -27,32 +27,32 @@
 */
 
 (function() {
-	
+
 	/**
 	 * Simple slider control for EaselJS examples.
 	 **/
 	function Slider(min, max, width, height) {
 		this.Shape_constructor();
-		
+
 	// public properties:
 		this.min = this.value = min||0;
 		this.max = max||100;
-		
+
 		this.width = width||100;
 		this.height = height||20;
-		
+
 		this.values = {};
-		
+
 		this.trackColor = "#EEE";
 		this.thumbColor = "#666";
-		
+
 		this.cursor = "pointer";
 		this.on("mousedown", this._handleInput, this);
 		this.on("pressmove", this._handleInput, this);
 	}
 	var p = createjs.extend(Slider, createjs.Shape);
-	
-	
+
+
 // public methods:
 	p.isVisible = function() { return true; };
 
@@ -65,7 +65,7 @@
 		}
 		this.Shape_draw(ctx, true);
 	};
-	
+
 
 // private methods:
 	p._checkChange = function() {
@@ -80,7 +80,7 @@
 		}
 		return false;
 	};
-	
+
 	p._handleInput = function(evt) {
 		var val = (evt.localX-this.height/2)/(this.width-this.height)*(this.max-this.min)+this.min;
 		val = Math.max(this.min, Math.min(this.max, val));
@@ -89,6 +89,6 @@
 		this.dispatchEvent("change");
 	};
 
-	
+
 	window.Slider = createjs.promote(Slider, "Shape");
 }());
