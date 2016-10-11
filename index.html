@@ -6,6 +6,9 @@
 
 	<link href="assets/css/shared.css" rel="stylesheet" type="text/css"/>
 	<link href="assets/css/examples.css" rel="stylesheet" type="text/css"/>
+    <style>
+        body{margin: 0;}
+    </style>
 	<script src="assets/js/examples.js"></script>
 
 	<script src="lib/easeljs-NEXT.combined.js"></script>
@@ -22,6 +25,8 @@
 		examples.showDistractor();
 		// create stage and point it to the canvas:
 		canvas = document.getElementById("testCanvas");
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
 		stage = new createjs.Stage(canvas);
 
 		// enable touch interactions if supported on the current device:
@@ -35,6 +40,7 @@
 		var image = new Image();
 		image.src = "assets/art/bead.png";
 		image.onload = handleImageLoad;
+
 	}
 
 	function stop() {
@@ -52,6 +58,15 @@
 
         stage.addChild(tile);
         
+        //mid bar
+        var oMid = new createjs.Shape();
+        oMid.graphics.beginFill("red");
+        oMid.graphics.drawRect(0, 0, stage.canvas.width, 50);
+        oMid.graphics.endFill();
+        oMid.x = 0;
+        oMid.y = stage.canvas.height * 0.3;
+        stage.addChild(oMid);
+
         //bottom bar
         var oBottom = new createjs.Shape();
         oBottom.graphics.beginFill("red");
@@ -61,6 +76,38 @@
         oBottom.y = stage.canvas.height - 50;
         stage.addChild(oBottom);
         
+//        //first Rac
+//        var Rac1 = new createjs.Shape();
+//        Rac1.graphics.beginFill("red");
+//        Rac1.graphics.drawRect(0, 0, 25, stage.canvas.height);
+//        Rac1.graphics.endFill();
+//        Rac1.x = 200;
+//        Rac1.y = 0;
+//        stage.addChild(Rac1);
+//
+//        //Second Rac
+//        var Rac2 = new createjs.Shape();
+//        Rac2.graphics.beginFill("red");
+//        Rac2.graphics.drawRect(0, 0, 25, stage.canvas.height);
+//        Rac2.graphics.endFill();
+//        Rac2.x = 450;
+//        Rac2.y = 0;
+//        stage.addChild(Rac2);
+
+        //Rac bar Loop
+        for(i=0; i < 5; i++){
+
+        var racName = new createjs.Shape();
+        racName.graphics.beginFill("red");
+        racName.graphics.drawRect(0, 0, 25, stage.canvas.height);
+        racName.graphics.endFill();
+        racName.x = window.innerWidth/5 *i;
+        racName.y = 0;
+        stage.addChild(racName);
+        }
+
+
+
         var image = event.target;
 		var bitmap;
 		var container = new createjs.Container();
@@ -121,7 +168,9 @@
 
 </head>
 
+
 <body onload="init();">
+<!--
 <header class="EaselJS">
 	<h1>Drag &amp; Drop</h1>
 
@@ -131,6 +180,7 @@
 		security error or not work unless the content is running on a server.
 	</p>
 </header>
+-->
 
 <div>
 	<canvas id="testCanvas" width="960" height="400"></canvas>
