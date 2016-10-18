@@ -76,36 +76,41 @@
         oBottom.y = stage.canvas.height - 50;
         stage.addChild(oBottom);
 
+        var image = event.target;
+		var bitmap;
+        var container = new createjs.Container();
+
         //Rac bar Loop
         for(i=0; i < 5; i++){
 
         var racName = new createjs.Shape();
+        var racX = window.innerWidth/5 *i;
         racName.graphics.beginFill("red");
         racName.graphics.drawRect(0, 0, 25, stage.canvas.height);
         racName.graphics.endFill();
-        racName.x = window.innerWidth/5 *i;
+        racName.x = racX;
         racName.y = 0;
         stage.addChild(racName);
-        }
 
-
-
-        var image = event.target;
-		var bitmap;
-		var container = new createjs.Container();
-		stage.addChild(container);
-
-		// create and populate the screen with random daisies:
-		for (var i = 0; i < 20; i++) {
+        // create and populate the screen with random daisies:
+		for (var j = 0; i != 0 && j < 5; j++) {
 			bitmap = new createjs.Bitmap(image);
 			container.addChild(bitmap);
-			bitmap.x = canvas.width * Math.random() | 0;
-			bitmap.y = canvas.height * Math.random() | 0;
-			bitmap.rotation = 360 * Math.random() | 0;
-			bitmap.regX = bitmap.image.width / 2 | 0;
+			bitmap.x = racX;
+            if (j == 0)
+                {
+                    bitmap.y = 100;
+                }
+            else
+            {
+                bitmap.y = 425 + j * 92;
+            }
+			//bitmap.y = canvas.height * Math.random() | 0;
+			//bitmap.rotation = 360 * Math.random() | 0;
+			bitmap.regX = bitmap.image.width / 2 + -8 | 0;
 			bitmap.regY = bitmap.image.height / 2 | 0;
-			bitmap.scaleX = bitmap.scaleY = bitmap.scale = Math.random() * 0.4 + 0.6;
-			bitmap.name = "bmp_" + i;
+			bitmap.scaleX = bitmap.scaleY = bitmap.scale = 1.2;
+			bitmap.name = "bmp_" + j;
 			bitmap.cursor = "pointer";
 
 			// using "on" binds the listener to the scope of the currentTarget by default
@@ -134,6 +139,9 @@
 			});
 
 		}
+        stage.addChild(container);
+    }
+
 
 		examples.hideDistractor();
 		createjs.Ticker.addEventListener("tick", tick);
