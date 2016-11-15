@@ -110,6 +110,7 @@
 			bitmap.name = "bmp_" + j;
 			bitmap.cursor = "pointer";
 
+
 			// using "on" binds the listener to the scope of the currentTarget by default
 			// in this case that means it executes in the scope of the button.
 			bitmap.on("mousedown", function (evt) {
@@ -120,6 +121,7 @@
 			// the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
 
 			bitmap.on("pressmove", function (evt) {
+
 				//this.y = evt.stageY + this.offset.y;
 
                 if(this.y = (stage.canvas.height * 0.3) - 45 )
