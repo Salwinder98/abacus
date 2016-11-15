@@ -93,7 +93,7 @@
         stage.addChild(racName);
 
         // create and populate the screen with random daisies:
-		for (var j = 0; i != 0 && j < 5; j++) {
+		for (var j = 0; i != 0 && j < 1; j++) {
 			bitmap = new createjs.Bitmap(image);
 			container.addChild(bitmap);
 			bitmap.x = racX;
@@ -101,10 +101,74 @@
                 {
                     bitmap.y = 100;
                 }
-            else
-            {
-                bitmap.y = 425 + j * 92;
-            }
+
+			//bitmap.y = canvas.height * Math.random() | 0;
+			//bitmap.rotation = 360 * Math.random() | 0;
+			bitmap.regX = bitmap.image.width / 2 + -8 | 0;
+			bitmap.regY = bitmap.image.height / 2 | 0;
+			bitmap.scaleX = bitmap.scaleY = bitmap.scale = 1.2;
+			bitmap.name = "bmp_" + j;
+			bitmap.cursor = "pointer";
+
+			// using "on" binds the listener to the scope of the currentTarget by default
+			// in this case that means it executes in the scope of the button.
+			bitmap.on("mousedown", function (evt) {
+				this.parent.addChild(this);
+				this.offset = {x: this.x - evt.stageX, y: this.y - evt.stageY};
+			});
+
+			// the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
+
+			bitmap.on("pressmove", function (evt) {
+				//this.y = evt.stageY + this.offset.y;
+
+                if(this.y = (stage.canvas.height * 0.3) - 45 )
+                    {
+                        this.y =100;
+                    }
+
+                else{
+                    if (this.y >= stage.canvas.height * 0.3)
+                    {
+                        this.y = evt.stageY + this.offset.y;
+                    }
+                    else if (this.y < stage.canvas.height * 0.3)
+                    {
+                        this.y = (stage.canvas.height * 0.3) - 45;
+                    }
+                }
+
+
+
+				// indicate that the stage should be updated on the next tick:
+				update = true;
+			});
+
+
+//            //Mouse event Rollover mouse pointer is on hit area
+//
+//			bitmap.on("rollover", function (evt) {
+//				this.scaleX = this.scaleY = this.scale * 1.2;
+//				update = true;
+//			});
+//
+//            //Mouse event Rollout mouse pointer is out of hit area
+//			bitmap.on("rollout", function (evt) {
+//				this.scaleX = this.scaleY = this.scale;
+//				update = true;
+//			});
+
+		}
+
+        // create and populate the screen with random daisies:
+		for (var j = 0; i != 0 && j < 4; j++) {
+			bitmap = new createjs.Bitmap(image);
+			container.addChild(bitmap);
+			bitmap.x = racX;
+
+
+            bitmap.y = 525 + j * 92;
+
 			//bitmap.y = canvas.height * Math.random() | 0;
 			//bitmap.rotation = 360 * Math.random() | 0;
 			bitmap.regX = bitmap.image.width / 2 + -8 | 0;
@@ -127,15 +191,19 @@
 				update = true;
 			});
 
-			bitmap.on("rollover", function (evt) {
-				this.scaleX = this.scaleY = this.scale * 1.2;
-				update = true;
-			});
 
-			bitmap.on("rollout", function (evt) {
-				this.scaleX = this.scaleY = this.scale;
-				update = true;
-			});
+//            //Mouse event Rollover mouse pointer is on hit area
+//
+//			bitmap.on("rollover", function (evt) {
+//				this.scaleX = this.scaleY = this.scale * 1.2;
+//				update = true;
+//			});
+//
+//            //Mouse event Rollout mouse pointer is out of hit area
+//			bitmap.on("rollout", function (evt) {
+//				this.scaleX = this.scaleY = this.scale;
+//				update = true;
+//			});
 
 		}
         stage.addChild(container);
