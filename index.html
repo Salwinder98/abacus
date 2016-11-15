@@ -122,7 +122,6 @@
 
 			// the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
 			bitmap.on("pressmove", function (evt) {
-				this.x = evt.stageX + this.offset.x;
 				this.y = evt.stageY + this.offset.y;
 				// indicate that the stage should be updated on the next tick:
 				update = true;
