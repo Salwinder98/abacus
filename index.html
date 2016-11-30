@@ -125,9 +125,7 @@
 			bitmap.on("pressmove", function (evt) {
 
 				this.y = evt.stageY + this.offset.y;
-//                this.y = evt.stageY;
-//                this.y = this.offset.y;
-//
+
                 if(this.y == (stage.canvas.height * 0.3) - 45 )
                     {
                         this.y =100;
@@ -193,6 +191,22 @@
 			bitmap.on("pressmove", function (evt) {
 				this.y = evt.stageY + this.offset.y;
 				// indicate that the stage should be updated on the next tick:
+
+             if(this.y == (stage.canvas.height * 0.3) - 45 )
+                    {
+                        this.y =100;
+                    }
+
+                else if (this.y <= stage.canvas.height * 0.3 + 50)
+                    {
+                        this.y = stage.canvas.height * 0.3 + 100;
+                    }
+                else if (this.y >= stage.canvas.height - 100 )
+                    {
+                        this.y = stage.canvas.height - 100;
+                    }
+
+
 				update = true;
 			});
 
