@@ -124,23 +124,24 @@
 
 			bitmap.on("pressmove", function (evt) {
 
-				//this.y = evt.stageY + this.offset.y;
-
-                if(this.y = (stage.canvas.height * 0.3) - 45 )
+				this.y = evt.stageY + this.offset.y;
+//                this.y = evt.stageY;
+//                this.y = this.offset.y;
+//
+                if(this.y == (stage.canvas.height * 0.3) - 45 )
                     {
                         this.y =100;
                     }
 
-                else{
-                    if (this.y >= stage.canvas.height * 0.3)
-                    {
-                        this.y = evt.stageY + this.offset.y;
-                    }
-                    else if (this.y < stage.canvas.height * 0.3)
+//                else if (this.y >= stage.canvas.height * 0.3)
+//                    {
+//                        this.y = evt.stageY + this.offset.y;
+//                    }
+                else if (this.y >= stage.canvas.height * 0.3)
                     {
                         this.y = (stage.canvas.height * 0.3) - 45;
                     }
-                }
+
 
 
 
